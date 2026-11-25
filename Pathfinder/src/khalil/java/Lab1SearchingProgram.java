@@ -1,4 +1,5 @@
 package khalil.java;
+
 public class Lab1SearchingProgram 
 {
     // Linear Search
@@ -12,42 +13,71 @@ public class Lab1SearchingProgram
         }
         return -1;
     }
- // Binary Search
-    public static int binarySearch(int[] arr, int target) {
+
+    // Binary Search
+    public static int binarySearch(int[] arr, int target) 
+    {
         int low = 0;
         int high = arr.length - 1;
-        while (low <= high) {
+
+        while (low <= high) 
+        {
             int mid = (low + high) / 2;
+
             if (arr[mid] == target) {
                 return mid;
-            } else if (arr[mid] < target) {
+            } 
+            else if (arr[mid] < target) {
                 low = mid + 1;
-            } else {
+            } 
+            else {
                 high = mid - 1;
             }
         }
-        return - 1;
+        return -1;
     }
-    public static void main(String args[]){
-    	int[] sizes = {1000, 10000, 100000, 1000000};
-    	System.out.println("Array Size\tLinear time(ns)\tBinary time(ns)");
-    	for(int n : sizes) {
-    		int[]arr = new int[n];
-    		for(int i = 0; i< n; i++) {
-    			arr[i] =i + 1;
-    		}
-    		int target = n;
-    		long start = System.nanoTime();
-    		long end = System.nanoTime();
-    		int linearResult = linearSearch(arr, target);
-    		double linearTime = end - start;
-    		start =System.nanoTime();
-    		end = System.nanoTime();
-    		int binaryResult = binarySearch(arr, target);
-    		double binaryTime = end - start;
-    		System.out.println(n+"\t\t"+ linearTime +"\t\t"+binaryTime);
-    		
-    	
-    	}
+
+    public static void main(String args[])
+    {
+        int[] sizes = {1000, 10000, 100000, 1000000};
+
+        System.out.println("Array Size\tLinear Time(ns)\tBinary Time(ns)");
+
+        for(int n : sizes) 
+        {
+            int[] arr = new int[n];
+
+            for(int i = 0; i < n; i++) {
+                arr[i] = i + 1;
+            }
+
+            int target = n;
+
+            // Linear Search Time
+            long start = System.nanoTime();
+
+            int linearResult = linearSearch(arr, target);
+
+            long end = System.nanoTime();
+
+            long linearTime = end - start;
+
+            // Binary Search Time
+            start = System.nanoTime();
+
+            int binaryResult = binarySearch(arr, target);
+
+            end = System.nanoTime();
+
+            long binaryTime = end - start;
+
+            // Display Results
+            System.out.println("Array Size: " + n);
+            System.out.println("Linear Search Index: " + linearResult);
+            System.out.println("Binary Search Index: " + binaryResult);
+            System.out.println("Linear Time: " + linearTime + " ns");
+            System.out.println("Binary Time: " + binaryTime + " ns");
+            System.out.println("--------------------------------");
+        }
     }
 }
